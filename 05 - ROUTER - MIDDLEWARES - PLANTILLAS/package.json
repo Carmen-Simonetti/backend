@@ -1,0 +1,23 @@
+{
+  "name": "04---servidor-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node 01-router/src/server.js"
+  }
+,
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "handlebars": "^4.7.8",
+    "multer": "^2.0.2",
+    "start": "^5.1.0",
+    "uuid": "^13.0.0"
+  }
+}
