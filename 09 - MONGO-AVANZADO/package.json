@@ -1,0 +1,18 @@
+{
+  "name": "08---nodejs---mongoose",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.1.3",
+    "mongoose-paginate-v2": "^1.9.1"
+  },
+  "type": "module"
+}

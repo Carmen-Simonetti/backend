@@ -1,0 +1,12 @@
+{{#if users.length}} {{!si users tiene algo ...}}
+    {{#each users}} {{! recorremos el array users }}
+
+    <ul>
+        <li>Nombre: {{nombre}}</li> {{!muestro nombre y edad de cada usuario}}
+        <li>Edad: {{edad}}</li>
+    </ul>
+    {{/each}} {{! cierro each }}
+
+{{else}}
+    <h2>No hay usuarios disponibles</h2>
+{{/if}}
