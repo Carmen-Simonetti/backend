@@ -8,13 +8,49 @@ class ProductManager {
     this.model = model;
   }
 
-  async getAll() { //getAll llama al método q retorna el find (.find = método de mongoose)
-    try {
-      return await this.model.find({});
-    } catch (error) {
-      throw new Error(error);
-    }
+getAll = async (page = 1, limit = 10, query, sort) => {
+  try {
+    const filter = {};
+if (query) {
+  if (query === "available") {
+    filter.stock = { $gt: 0 };
+  } else {
+    filter.section = query; //búsqueda por section
   }
+}
+    const sortOption = {};
+    if (sort) {
+      sortOption.price = sort === "asc" ? 1 : -1;
+    }
+
+    const result = await this.model.paginate(filter, {
+      page,
+      limit,
+      sort: sortOption,
+      lean: true
+    });
+
+    return {
+      status: "success",
+      payload: result.docs,
+      totalPages: result.totalPages,
+      prevPage: result.prevPage,
+      nextPage: result.nextPage,
+      page: result.page,
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevLink: result.hasPrevPage
+        ? `/api/products?page=${result.prevPage}&limit=${limit}`
+        : null,
+      nextLink: result.hasNextPage
+        ? `/api/products?page=${result.nextPage}&limit=${limit}`
+        : null
+    };
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
   async create(body) { 
     try {
